@@ -23,6 +23,7 @@ namespace Final_Project_Conference_Room_Booking.Controllers
             return View();
         }
 
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
