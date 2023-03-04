@@ -1,66 +1,62 @@
-﻿@model Final_Project_Conference_Room_Booking.Models.Booking
+﻿@model IEnumerable<Final_Project_Conference_Room_Booking.Models.Booking> 
 
 @{
-    ViewData["Title"] = "Admin";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
 <div>
-    <h4>Booking</h4>
+    <h4> Admin Functionality </h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Code)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Code)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Capacity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Capacity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsConfirmed)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsConfirmed)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConfirmedFrom)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ConfirmedFrom.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Room)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Room.Id)
-        </dd>
-    </dl>
-</div>
+     
+    
+@using(Html.BeginForm("Index","User",FormMethod.Get))
+{<p>
+     Kerko te gjitha rezervimet qe jane bere ne daten: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" /></p>
+}
+
+<table class = "table table-bordered table-hover"> 
+
+<thead> 
+
+    <tr>
+        <th scope = "col"> @Html.DisplayNameFor(model => model.Code)         </th>
+        <th scope = "col"> @Html.DisplayNameFor(model => model.Capacity)     </th>
+        <th scope = "col"> @Html.DisplayNameFor(model => model.StartDate)    </th>
+        <th scope = "col"> @Html.DisplayNameFor(model => model.EndDate)      </th>
+        <th scope = "col"> @Html.DisplayNameFor(model => model.IsConfirmed)  </th>
+        <th scope = "col"> @Html.DisplayNameFor(model => model.IsDeleted)    </th>
+        <th scope = "col"> @Html.DisplayNameFor(model => model.ConfirmedFrom) </th>
+         <th scope = "col">@Html.DisplayNameFor(model => model.Room)          </th>        
+
+    </tr> 
+    </thead> 
+    
+    <tbody> 
+
+            @foreach(var item in Model)
+
+            {
+            
+            <tr> 
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.Code)          </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.Capacity)      </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.StartDate)     </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.EndDate)       </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.IsConfirmed)   </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.IsDeleted)     </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.ConfirmedFromId) </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.RoomId)          </td>
+
+            </tr>
+           
+            
+    
+ 
+            }
+ </tbody>
+</table>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    
     <a asp-action="Index">Back to List</a>
 </div>

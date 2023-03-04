@@ -19,6 +19,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IConferenceRoomRepository, ConferenceRoomRepository>();
 builder.Services.AddScoped<IConferenceRoomService, ConferenceRoomService>();
+builder.Services.AddScoped<ILoginRepository, LoginRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

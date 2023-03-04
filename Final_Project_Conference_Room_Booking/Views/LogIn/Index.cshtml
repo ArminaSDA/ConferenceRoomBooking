@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+<html>
+<head>
+</head>
+ 
+<body>
+<div class="login">
+ 
+  <form method="post" enctype="multipart/form-data" asp-controller="Login" asp-action="Index" >
+      <label for="Email">E mail:</label><br>
+    <p><input type="text" name="Email" value="" placeholder="Username or Email" required></p>     
+    <label for="Password">Password:</label><br>
+    <p><input type="password" name="Password" value="" placeholder="Password" required></p>     
+    <p class="submit"><input type="submit" name="commit" value="Login"></p>
+    <hr/>
+    @ViewBag.Email
+  </form>
+</div> 
+</body>
+</html>
