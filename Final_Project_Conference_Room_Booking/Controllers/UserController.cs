@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Final_Project_Conference_Room_Booking.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Final_Project_Conference_Room_Booking.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Index()
+        private readonly IUserService _userservice;
+
+        public UserController(IUserService userservice)
         {
-            return View();
+            _userservice = userservice;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var result = await _userservice.GetAllReservations(DateTime.Now);
+                                           
+            return View(result);
         }
     }
 }

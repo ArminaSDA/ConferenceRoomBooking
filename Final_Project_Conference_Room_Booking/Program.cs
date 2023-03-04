@@ -1,4 +1,8 @@
 using Final_Project_Conference_Room_Booking.Models;
+using Final_Project_Conference_Room_Booking.Repositories.Implementation;
+using Final_Project_Conference_Room_Booking.Repositories.Interfaces;
+using Final_Project_Conference_Room_Booking.Services.Implementation;
+using Final_Project_Conference_Room_Booking.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +13,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ConferenceRoomBookingContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//inject classes into Program 
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IConferenceRoomRepository, ConferenceRoomRepository>();
+builder.Services.AddScoped<IConferenceRoomService, ConferenceRoomService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,4 +40,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+//app.UseMvcWithDefaultRoute();
 app.Run();
