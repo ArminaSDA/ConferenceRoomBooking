@@ -1,39 +1,46 @@
-﻿@model IEnumerable<Final_Project_Conference_Room_Booking.Models.ConferenceRoom>
-
+﻿@model IEnumerable<ConferenceRoom>
 @{
     ViewData["Title"] = "Index";
 }
-
-
-<div>
-    <h4>Conference Room</h4>
-    <hr />
-    
-    <table class="table table-bordered table-hover" > 
-        <thead> 
+@if (TempData["ResultOk"] != null)
+{
+    <h1 class="alert-success">@TempData["ResultOk"]</h1>
+}
+<div class="container shadow p-5">
+    <div class="col mb-3">
+        <a asp-controller="ConferenceRoom" asp-action="Create" class="btn btn-lg btn-primary"><i class="bi bi-file-plus-fill"></i>Add Reservation</a>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
             <tr>
-            <th scope="col"> @Html.DisplayNameFor(model => model.Code)  </th>
-
+                <th scope="col">Code</th>
+                <th scope="col">MaxCapacity</th>
+                
             <th scope="col"> @Html.DisplayNameFor(model => model.MaxCapacity) </th>
-             </tr>    
-        </thead>
-        <tbody>   
-
-            @foreach(var item in Model)
-        {
-            <tr>
-            <td width="20%"> 
-                @Html.DisplayFor(modelitem => item.Code)
-            </td>
-            <td width="20%"> 
-                @Html.DisplayFor(modelitem => item.MaxCapacity)
-            </td>
-
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="20%">
+                        @item.Code
+                    </td>
+                    <td width="20%">
+                        @item.MaxCapacity
+                    </td>
+               
+                    <td>
+                        <div role="group" class="w-60 btn-group">
+                            <a asp-controller="ConferenceRoom" asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+                            <a asp-controller="ConferenceRoom" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i>Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
 
-         </tbody>
-         </table>   
+        </tbody>
+    </table>
 </div>
 
 

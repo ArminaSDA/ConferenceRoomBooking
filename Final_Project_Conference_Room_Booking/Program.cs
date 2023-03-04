@@ -11,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IConferenceRoomRepository, ConferenceRoomRepository>(); 
+builder.Services.AddScoped<IConferenceRoomService, ConferenceRoomService>(); 
+
 
 builder.Services.AddScoped<IReservationHolderRepository, ReservationHolderRepository>();
 

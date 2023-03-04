@@ -1,6 +1,5 @@
-﻿namespace Final_Project_Conference_Room_Booking.Services.Implementation
+﻿namespace Final_Project_Conference_Room_Booking.Services.Implementation;
+
+public class UnavailabilityPeriodService
 {
-    public class UnavailabilityPeriodService
-    {
-    }
 }
