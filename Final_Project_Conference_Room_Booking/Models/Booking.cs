@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Final_Project_Conference_Room_Booking.Models
 {
-    public partial class Booking
+    public  class Booking
     {
         public Booking()
         {

@@ -1,3 +1,4 @@
+using Final_Project_Conference_Room_Booking.Controllers;
 using Final_Project_Conference_Room_Booking.Models;
 using Final_Project_Conference_Room_Booking.Repositories.Implementation;
 using Final_Project_Conference_Room_Booking.Repositories.Interfaces;
@@ -5,10 +6,19 @@ using Final_Project_Conference_Room_Booking.Services.Implementation;
 using Final_Project_Conference_Room_Booking.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IReservationHolderRepository, ReservationHolderRepository>();
+
+builder.Services.AddScoped<IReservationHolderService, ReservationHolderService>();
+
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+
+builder.Services.AddScoped<IBookingService, BookingService>();
 
 builder.Services.AddDbContext<ConferenceRoomBookingContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
