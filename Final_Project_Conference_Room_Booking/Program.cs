@@ -15,13 +15,6 @@ builder.Services.AddScoped<IConferenceRoomRepository, ConferenceRoomRepository>(
 builder.Services.AddScoped<IConferenceRoomService, ConferenceRoomService>(); 
 
 
-builder.Services.AddScoped<IReservationHolderRepository, ReservationHolderRepository>();
-
-builder.Services.AddScoped<IReservationHolderService, ReservationHolderService>();
-
-builder.Services.AddScoped<IBookingRepository, BookingRepository>();
-
-builder.Services.AddScoped<IBookingService, BookingService>();
 
 builder.Services.AddDbContext<ConferenceRoomBookingContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -33,6 +26,10 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IConferenceRoomRepository, ConferenceRoomRepository>();
 builder.Services.AddScoped<IConferenceRoomService, ConferenceRoomService>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
+builder.Services.AddScoped<IReservationHolderRepository, ReservationHolderRepository>();
+builder.Services.AddScoped<IReservationHolderService, ReservationHolderService>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 
 var app = builder.Build();
 
