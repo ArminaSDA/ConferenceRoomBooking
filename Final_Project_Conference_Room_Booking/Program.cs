@@ -6,7 +6,6 @@ using Final_Project_Conference_Room_Booking.Services.Implementation;
 using Final_Project_Conference_Room_Booking.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
