@@ -11,9 +11,9 @@ namespace Final_Project_Conference_Room_Booking.Controllers
         {
             _userservice = userservice;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(DateTime dt)
         {
-            var result = await _userservice.GetAllReservations(DateTime.Now);
+            var result = await _userservice.GetAllReservations(dt);
                                            
             return View(result);
         }
