@@ -11,9 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IConferenceRoomRepository, ConferenceRoomRepository>(); 
-builder.Services.AddScoped<IConferenceRoomService, ConferenceRoomService>(); 
-
-
+builder.Services.AddScoped<IConferenceRoomService, ConferenceRoomService>();
+builder.Services.AddScoped<IUnavailabilityPeriodRepository, UnavailabilityPeriodRepository>();
+builder.Services.AddScoped<IUnavailabilityPeriodService, UnavailabilityPeriodService>(); 
 
 builder.Services.AddDbContext<ConferenceRoomBookingContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<UnavailabilityPeriod>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["ResultOk"] != null)
+{
+    <h1 class="alert-success">@TempData["ResultOk"]</h1>
+}
+
+<div class="container shadow p-5">
+
+    <div class="col mb-3">
+        <a asp-controller="UnavailabilityPeriod" asp-action="Create" class="btn btn-lg btn-primary"><i class="bi bi-file-plus-fill"></i>Create Unavailabilty Period</a>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">StardDate</th>
+                <th scope="col">EndDate</th>
+                <th scope="col">ConferenceRoomId</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td width="20%">
+                        @item.ConferenceRoomId
+                    </td>
+                    <td width="20%">
+                        @item.StartDate
+                    </td>
+                    <td width="20%">
+                        @item.EndDate
+                    </td>
+
+                    <td>
+                        <div role="group" class="w-60 btn-group">
+                            <a asp-controller="Unavailability" asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+                            <a asp-controller="Unavailability" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i>Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*<style>
+    tbody {
+        background-image: url("https://wallpaperaccess.com/full/4012592.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>*@
