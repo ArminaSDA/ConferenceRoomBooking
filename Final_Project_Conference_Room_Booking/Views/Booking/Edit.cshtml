@@ -9,6 +9,10 @@
         <div asp-validation-summary="All"></div>
 
         <div class="form-row">
+            @Html.DropDownListFor(m => m.RoomId,
+            new SelectList(Enum.GetValues(typeof(ConferenceRoom))),
+            "Select Room")
+            </div>
             <div class="form-group col-md-6">
                 <label asp-for="Code">Code</label>
                 <input type="text" class="form-control mb-3" asp-for="Code" placeholder="Please insert your Code">
@@ -19,11 +23,7 @@
                 <input type="number" class="form-control mb-3" asp-for="Capacity" placeholder="The number requested cannot exceed the maximum capacity">
                 <span asp-validation-for="Capacity" class=" alert-danger"></span>
             </div>
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="RoomId">RoomId</label>
-                <input type="number" class="form-control" asp-for="RoomId">
-                <span asp-validation-for="RoomId" class=" alert-danger"></span>
-            </div>
+         
             <div class="form-group col-md-6 mb-3">
                 <label asp-for="StartDate">StartDate</label>
                 <input type="datetime-local" class="form-control" asp-for="StartDate" placeholder="Please insert the Start Date of your reservation">
@@ -34,7 +34,7 @@
                 <input type="datetime-local" class="form-control" asp-for="EndDate" placeholder="Please insert the End Date of your reservation">
                 <span asp-validation-for="EndDate" class=" alert-danger"></span>
             </div>
-            <div class ="form-group col-md-6 mb-3">
+           @* <div class ="form-group col-md-6 mb-3">
                 <label asp-for="IsConfirmed">Is Confirmed:</label>
                 <input type="checkbox" id="IsConfirmed" name="IsConfirmed">
             </div>
@@ -47,8 +47,8 @@
                 <label asp-for="ConfirmedFromId">ConfirmedFromId</label>
                 <input type="number" class="form-control" asp-for="ConfirmedFromId">
                 <span asp-validation-for="ConfirmedFromId"></span>
-            </div>
-        </div>
+            </div>*@
+       
 
         <button type="submit" class="btn btn-lg btn-primary p-2"><i class="bi bi-file-plus-fill"></i>Update</button>
         <a asp-controller="Booking" asp-action="Index" class="btn btn-lg btn-warning p-2">Back To List</a>

@@ -4,6 +4,7 @@ using Final_Project_Conference_Room_Booking.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Net;
 
@@ -13,19 +14,22 @@ namespace Final_Project_Conference_Room_Booking.Controllers
     public class ReservationHolderController : Controller
     {
         private readonly IReservationHolderService _reservationHolderService;
+        private readonly IBookingService _bookingService;
        
-        public ReservationHolderController(IReservationHolderService reservationHolderService)
+        public ReservationHolderController(IReservationHolderService reservationHolderService, IBookingService bookingService)
         {
             _reservationHolderService = reservationHolderService;
-            
+            _bookingService = bookingService;   
         }
         public async Task<ActionResult> Index()
         {
             var rHoldersList = await _reservationHolderService.GetAllReservationHolders();
             return View(rHoldersList);
         }
-        public IActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            var bookingList = await _bookingService.GetAllTheBookings();
+            ViewBag.BookingList = bookingList;
             return View();
         }
 
@@ -34,10 +38,7 @@ namespace Final_Project_Conference_Room_Booking.Controllers
 
         public async Task<ActionResult> Create(ReservationHolder reservationHolder)
         {
-            if (ModelState.IsValid)
-            {
-                var result = await _reservationHolderService.Create(reservationHolder);
-            }
+            var result = await _reservationHolderService.Create(reservationHolder);
             return RedirectToAction("Index");
         }
 

@@ -11,10 +11,11 @@ namespace Final_Project_Conference_Room_Booking.Controllers
     public class BookingController : Controller
     {
         private readonly IBookingService _bookingService;
-
-        public BookingController(IBookingService bookingService)
+        private readonly IConferenceRoomService _conferenceRoomService;
+        public BookingController(IBookingService bookingService, IConferenceRoomService conferenceRoomService)
         {
             _bookingService = bookingService;
+            _conferenceRoomService = conferenceRoomService; 
         }
 
         public async Task<ActionResult> Index()
@@ -23,8 +24,10 @@ namespace Final_Project_Conference_Room_Booking.Controllers
             return View(bookingList);
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            var cRooms = await _conferenceRoomService.GetAllConferenceRooms();
+            ViewBag.ConferenceRoomList = cRooms;
             return View();
         }
 
@@ -32,19 +35,9 @@ namespace Final_Project_Conference_Room_Booking.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Booking booking)
         {
-            if (ModelState.IsValid)
-            {
                 var result = await _bookingService.Create(booking);
-                if (result != null)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "An error occurred while creating the booking.");
-                }
-            }
-            return View(booking);
+                
+                return View(booking);
         }
 
         [HttpGet]
