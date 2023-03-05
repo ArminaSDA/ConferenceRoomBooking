@@ -11,8 +11,13 @@
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label asp-for="Code">Code</label>
-                <input type="text" class="form-control mb-3" asp-for="Code" placeholder="Please insert your Code">
+                <label asp-for="Code"> Code </label>
+                <select class="form-control mb-3" asp-for="Code" placeholder="Please insert your Code">
+                        <option value="A101">A101</option>
+                        <option value="B100">B100 </option>
+                        <option value="C001">C001</option>
+                        <option value="C002">C002</option>
+                  </select>
                 <span asp-validation-for="Code" class=" alert-danger"></span>
             </div>
             <div class="form-group col-md-6">
@@ -20,9 +25,9 @@
                 <input type="number" class="form-control mb-3" asp-for="Capacity" placeholder="The number requested cannot exceed the maximum capacity of 30">
                 <span asp-validation-for="Capacity" class=" alert-danger"></span>
             </div>
-            <div class="form-group col-md-6 mb-3">
+              <div class="form-group col-md-6">
                 <label asp-for="RoomId">RoomId</label>
-                <input type="number" class="form-control" asp-for="RoomId">
+                <input type="number" class="form-control mb-3" asp-for="RoomId" placeholder="Please insert the Room Id">
                 <span asp-validation-for="RoomId" class=" alert-danger"></span>
             </div>
             <div class="form-group col-md-6 mb-3">
@@ -34,19 +39,6 @@
                 <label asp-for="EndDate">EndDate</label>
                 <input type="datetime-local" class="form-control" asp-for="EndDate" placeholder="Please insert the End Date of your reservation">
                 <span asp-validation-for="EndDate" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="IsConfirmed">Is Confirmed:</label>
-                <input type="checkbox" id="IsConfirmed" name="IsConfirmed">
-            </div>
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="IsDeleted">Is Deleted:</label>
-                <input type="checkbox" id="IsDeleted" name="IsDeleted">
-            </div>
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="ConfirmedFromId">ConfirmedFromId</label>
-                <input type="number" class="form-control" asp-for="ConfirmedFromId">
-                <span asp-validation-for="ConfirmedFromId"></span>
             </div>
         </div>
 

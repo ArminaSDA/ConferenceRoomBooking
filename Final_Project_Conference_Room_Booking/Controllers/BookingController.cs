@@ -30,11 +30,12 @@ namespace Final_Project_Conference_Room_Booking.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Booking booking)
+        public async Task<ActionResult> Create(string code, int capacity, int roomid, DateTime startdate,
+                                          DateTime enddate)
         {
             if (ModelState.IsValid)
             {
-                var result = await _bookingService.Create(booking);
+                var result = await _bookingService.Create(code, capacity, roomid, startdate, enddate);
                 if (result != null)
                 {
                     return RedirectToAction("Index");
@@ -44,7 +45,7 @@ namespace Final_Project_Conference_Room_Booking.Controllers
                     ModelState.AddModelError("", "An error occurred while creating the booking.");
                 }
             }
-            return View(booking);
+            return View();
         }
 
         [HttpGet]

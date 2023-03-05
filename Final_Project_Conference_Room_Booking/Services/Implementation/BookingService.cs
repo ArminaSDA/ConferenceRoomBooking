@@ -23,8 +23,21 @@ namespace Final_Project_Conference_Room_Booking.Services.Implementation
             return await _bookingRepository.GetAllTheBookings();
         }
 
-        public async Task<Booking> Create(Booking booking)
+        public async Task<Booking> Create(string code, int capacity, int roomid, DateTime startdate, 
+                                          DateTime enddate)
         {
+            var booking = new Booking
+            {
+                Code = code,
+                Capacity = capacity,
+                RoomId = roomid,
+                StartDate = startdate,
+                EndDate = enddate,
+                IsConfirmed = false,
+                IsDeleted = false,
+                ConfirmedFromId = null
+
+            };
             return await _bookingRepository.Create(booking);
         }
        
