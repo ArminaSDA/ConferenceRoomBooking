@@ -21,7 +21,7 @@ namespace Final_Project_Conference_Room_Booking.Repositories.Implementation
         public async Task<ReservationHolder> Create(ReservationHolder reservationHolder)
         {
             await _context.ReservationHolders.AddAsync(reservationHolder);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return (reservationHolder);
         }
         public async Task<ReservationHolder> DeleteReservationHolder(int id)

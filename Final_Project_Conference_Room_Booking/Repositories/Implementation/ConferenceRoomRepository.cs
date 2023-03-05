@@ -21,7 +21,7 @@ public class ConferenceRoomRepository : IConferenceRoomRepository
     public async Task<ConferenceRoom> Create(ConferenceRoom conferenceRoom)
     {
         await _context.ConferenceRooms.AddAsync(conferenceRoom);
-        _context.SaveChangesAsync();
+       await _context.SaveChangesAsync();
         return (conferenceRoom);
     }
     public async Task<ConferenceRoom> DeleteConferenceRoom(int id)
