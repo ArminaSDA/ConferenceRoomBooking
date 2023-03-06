@@ -2,7 +2,7 @@
 @model Booking
 
 @{
-    var conferenceRoomList = ViewBag.BookingList;
+    var conferenceRoomList = ViewBag.ConferenceRoomList;
     SelectList roomList = new SelectList(conferenceRoomList, "Id", "Code");
 }
 <div class="container shadow p-5">

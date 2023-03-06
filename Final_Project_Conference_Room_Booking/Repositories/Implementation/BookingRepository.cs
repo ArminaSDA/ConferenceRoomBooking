@@ -21,7 +21,7 @@ namespace Final_Project_Conference_Room_Booking.Repositories.Implementation
         public async Task<Booking> Create(Booking booking)
         {
             await _context.Bookings.AddAsync(booking);
-          await  _context.SaveChangesAsync();
+            await  _context.SaveChangesAsync();
             return (booking);
         }
         public async Task<Booking> DeleteBooking(int id)

@@ -14,13 +14,42 @@ namespace Final_Project_Conference_Room_Booking.Repositories.Implementation
         {
             _context = context;
         }
-        public async Task<IEnumerable<UnavailabilityPeriod>> GetAllUnavailabilityPeriod(DateTime data)
+        public async Task<List<UnavailabilityPeriod>> GetAllUnavailabilityPeriod()
         {
-            var result = await _context.UnavailabilityPeriods.Where(s => s.StartDate <= data && s.EndDate >= data).ToListAsync();
+            var result = await _context.UnavailabilityPeriods.ToListAsync();
             return result;
 
         }
-     
+        public async Task<UnavailabilityPeriod> Create(UnavailabilityPeriod unavailability)
+        {
+            await _context.UnavailabilityPeriods.AddAsync(unavailability);
+            await _context.SaveChangesAsync();  
+            return unavailability;
+        }
+        public async Task<UnavailabilityPeriod> DeleteUnavailabilityPeriod(int id)
+        {
+            var deleterecord = await _context.UnavailabilityPeriods.FindAsync(id);
+
+            _context.UnavailabilityPeriods.Remove(deleterecord);
+            await _context.SaveChangesAsync();
+
+            return deleterecord;
+        }
+        public async Task<UnavailabilityPeriod> FindUnavailabilityPeriod(int id)
+        {
+            var uPeriodId = await _context.UnavailabilityPeriods.FindAsync(id);
+            return uPeriodId;
+        }
+        public async Task<UnavailabilityPeriod> Edit(int id)
+        {
+            return await _context.UnavailabilityPeriods.FindAsync(id);
+        }
+        public async Task<UnavailabilityPeriod> Edit(UnavailabilityPeriod unavailability)
+        {
+            _context.UnavailabilityPeriods.Update(unavailability);
+            await _context.SaveChangesAsync();
+            return unavailability;
+        }
 
     }
 }

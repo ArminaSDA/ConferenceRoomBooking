@@ -52,16 +52,9 @@ namespace Final_Project_Conference_Room_Booking.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(ReservationHolder reservationHolder)
         {
-            if (ModelState.IsValid)
-            {
                 await _reservationHolderService.Edit(reservationHolder);
                 return RedirectToAction("Index");
 
-            }
-            else
-            {
-                return View(reservationHolder);
-            }
         }
 
         [HttpGet]
