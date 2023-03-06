@@ -27,18 +27,9 @@ public class ConferenceRoomController : Controller
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> Create(ConferenceRoom conferenceRoom)
     {
-        if (ModelState.IsValid)
-        {
+       
             var result = await _conferenceRoomService.Create(conferenceRoom);
-            if (result != null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ModelState.AddModelError("", "An error occurred while creating the booking.");
-            }
-        }
+        
         return RedirectToAction("Index");
     }
     [HttpGet]
@@ -51,15 +42,10 @@ public class ConferenceRoomController : Controller
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> Edit(ConferenceRoom conferenceRoom)
     {
-        if (ModelState.IsValid)
-        {
+        
             await _conferenceRoomService.Edit(conferenceRoom);
             return RedirectToAction("Index");
-        }
-        else
-        {
-            return View(conferenceRoom);
-        }
+      
     }
     [HttpGet]
     public async Task<ActionResult> Delete(int id)

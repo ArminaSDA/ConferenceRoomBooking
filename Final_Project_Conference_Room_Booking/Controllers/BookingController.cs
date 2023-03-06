@@ -1,4 +1,5 @@
 ﻿using Final_Project_Conference_Room_Booking.Models;
+using Final_Project_Conference_Room_Booking.Services.Implementation;
 using Final_Project_Conference_Room_Booking.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,18 +27,18 @@ namespace Final_Project_Conference_Room_Booking.Controllers
 
         public async Task<ActionResult> Create()
         {
-            var cRooms = await _conferenceRoomService.GetAllConferenceRooms();
-            ViewBag.ConferenceRoomList = cRooms;
+            var conferenceRoomList = await _conferenceRoomService.GetAllConferenceRooms();
+            ViewBag.ConferenceRoomList = conferenceRoomList; // ViewBag i dergon cRooms tek View
             return View();
         }
-
+  
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Booking booking)
         {
                 var result = await _bookingService.Create(booking);
-                
-                return View(booking);
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -51,15 +52,10 @@ namespace Final_Project_Conference_Room_Booking.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Booking booking)
         {
-            if (ModelState.IsValid)
-            {
+            
                 await _bookingService.Edit(booking);
                 return RedirectToAction("Index");
-            }
-            else
-            {
-                return View(booking);
-            }
+            
         }
 
         [HttpGet]
