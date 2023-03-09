@@ -10,10 +10,15 @@
         <div asp-validation-summary="All"></div>
 
         <div class="form-row">
-           <div class="form-group col-md-6">
+         @*  <div class="form-group col-md-6">
                 @Html.DropDownListFor(m => m.BookingId,
                 new SelectList(Enum.GetValues(typeof(ConferenceRoom))),
                 "Select Room")
+            </div>*@
+             <div class="form-group col-md-6">
+                <label asp-for="BookingId">BookingId</label>
+                <input type="text" class="form-control mb-3" asp-for="BookingId" placeholder="Booking Id">
+                <span asp-validation-for="BookingId" class=" alert-danger"></span>
             </div>
             <div class="form-group col-md-6">
                 <label asp-for="CardNumber">CardNumber</label>

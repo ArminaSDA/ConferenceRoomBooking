@@ -8,10 +8,15 @@
     <form method="post" asp-action="Edit">
         <div asp-validation-summary="All"></div>
 
-        <div class="form-row">
+       @* <div class="form-row">
             @Html.DropDownListFor(m => m.RoomId,
             new SelectList(Enum.GetValues(typeof(ConferenceRoom))),
             "Select Room")
+            </div>*@
+            <div class="form-group col-md-6">
+                <label asp-for="RoomId">RoomId</label>
+                <input type="text" class="form-control mb-3" asp-for="RoomId" placeholder="Please insert your Room Id">
+                <span asp-validation-for="RoomId" class=" alert-danger"></span>
             </div>
             <div class="form-group col-md-6">
                 <label asp-for="Code">Code</label>
