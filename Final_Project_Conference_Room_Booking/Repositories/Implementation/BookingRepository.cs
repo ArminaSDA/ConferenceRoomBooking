@@ -28,7 +28,8 @@ namespace Final_Project_Conference_Room_Booking.Repositories.Implementation
         {
             var deleterecord = await _context.Bookings.FindAsync(id);
 
-            _context.Bookings.Remove(deleterecord);
+             deleterecord.IsDeleted = true;
+            _context.Bookings.Update(deleterecord);
             await _context.SaveChangesAsync();
 
             return deleterecord;
