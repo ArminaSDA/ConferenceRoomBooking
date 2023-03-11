@@ -1,69 +1,54 @@
-﻿
-@model ReservationHolder
+﻿@model Final_Project_Conference_Room_Booking.Models.ReservationHolder
 
-<div class="container shadow p-5">
-    <div class="row pb-2">
-        <h2>Edit Reservation</h2>
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CardNumber" class="control-label"></label>
+                <input asp-for="CardNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <textarea asp-for="Notes" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingId" class="control-label"></label>
+                @Html.DropDownList("BookingId", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-default">Cancel</a>
+            </div>
+        </form>
     </div>
-
-    <form method="post" asp-action="Edit">
-        <div asp-validation-summary="All"></div>
-
-        <div class="form-row">
-         @*  <div class="form-group col-md-6">
-                @Html.DropDownListFor(m => m.BookingId,
-                new SelectList(Enum.GetValues(typeof(ConferenceRoom))),
-                "Select Room")
-            </div>*@
-             <div class="form-group col-md-6">
-                <label asp-for="BookingId">BookingId</label>
-                <input type="text" class="form-control mb-3" asp-for="BookingId" placeholder="Booking Id">
-                <span asp-validation-for="BookingId" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="CardNumber">CardNumber</label>
-                <input type="text" class="form-control mb-3" asp-for="CardNumber" placeholder="Please insert your Card Number">
-                <span asp-validation-for="CardNumber" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Name">Name</label>
-                <input type="text" class="form-control mb-3" asp-for="Name" placeholder="Please insert your Name">
-                <span asp-validation-for="Name" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="Surname">Surname</label>
-                <input type="text" class="form-control" asp-for="Surname" placeholder="Please insert your Surname">
-                <span asp-validation-for="Surname" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="Email">Email</label>
-                <input type="email" class="form-control" asp-for="Email" placeholder="Please insert your E-mail">
-                <span asp-validation-for="Email" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="PhoneNumber">PhoneNumber</label>
-                <input type="tel" class="form-control" asp-for="PhoneNumber" placeholder="Please insert your Phone Number">
-                <span asp-validation-for="PhoneNumber" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="Notes">Notes</label>
-                <input type="text" class="form-control" asp-for="Notes" placeholder="Here you can put all your Notes">
-                <span asp-validation-for="Notes" class=" alert-danger"></span>
-            </div>
-         
-        </div>
-
-        <button type="submit" class="btn btn-lg btn-primary p-2"><i class="bi bi-file-plus-fill"></i>Update</button>
-        <a asp-controller="ReservationHolder" asp-action="Index" class="btn btn-lg btn-warning p-2">Back To List</a>
-    </form>
-
 </div>
 
-
-@*//for front end validations*@
-
-@section Scripts{
+@section Scripts {
     @{
-        <partial name="_ValidationScriptsPartial" />
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     }

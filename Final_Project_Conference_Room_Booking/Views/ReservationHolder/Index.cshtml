@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ReservationHolder>
+﻿@using System.Linq;
+@model IEnumerable<ReservationHolder>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,7 +7,7 @@
 
 @if (TempData["ResultOk"] != null)
 {
-        <h1 class="alert-success">@TempData["ResultOk"]</h1>
+    <h1 class="alert-success">@TempData["ResultOk"]</h1>
 }
 
 <div class="container shadow p-5">
@@ -23,21 +24,20 @@
                 <th scope="col">Email</th>
                 <th scope="col">PhoneNumber</th>
                 <th scope="col">Notes</th>
-               @* <th scope="col">BookingId</th>*@
-   
+
             </tr>
         </thead>
         <tbody>
 
             @foreach (var item in Model)
             {
-                    <tr>
-                        <td width="20%">
+                <tr>
+                    <td width="20%">
                         @item.CardNumber
-                        </td>
-                        <td width="20%">
+                    </td>
+                    <td width="20%">
                         @item.Name
-                        </td>
+                    </td>
                     <td width="20%">
                         @item.Surname
                     </td>
@@ -47,22 +47,19 @@
                     <td width="20%">
                         @item.PhoneNumber
                     </td>
-                     <td width="20%">
+                    <td width="20%">
                         @item.Notes
                     </td>
-                   @* <td width="20%">
-                        @item.BookingId
-                    </td>*@
-                 
-                        <td>
-                            <div role="group" class="w-60 btn-group">
-                                <a asp-controller="ReservationHolder" asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+
+
+                    <td>
+                        <div role="group" class="w-60 btn-group">
+                            <a asp-controller="ReservationHolder" asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
                             <a asp-controller="ReservationHolder" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i>Delete</a>
-                            </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
 </div>
-

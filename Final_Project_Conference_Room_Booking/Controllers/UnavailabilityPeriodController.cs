@@ -28,6 +28,20 @@ namespace Final_Project_Conference_Room_Booking.Controllers
             ViewBag.ConferenceRoomList = conferenceRoomList; // ViewBag i dergon cRooms tek View
             return View();
         }
+        public async Task<IActionResult> Edit(int id)
+        {
+
+            var unavailabilityPeriod = await _unavailabilityPeriodService.FindUnavailabilityPeriod(id);
+            if (unavailabilityPeriod == null)
+            {
+                return NotFound();
+            }
+
+            var conferenceRooms = await _conferenceRoomService.GetAllConferenceRooms();
+            ViewBag.ConferenceRoomId = new SelectList(conferenceRooms, "Id", "Code", unavailabilityPeriod.ConferenceRoomId);
+
+            return View(unavailabilityPeriod);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -37,13 +51,7 @@ namespace Final_Project_Conference_Room_Booking.Controllers
             var result = await _unavailabilityPeriodService.Create(unavailabilityPeriod);
             return RedirectToAction("Index");
         }
-        [HttpGet]
-        public async Task<ActionResult> Edit(int id)
-        {
-            var booking = await _unavailabilityPeriodService.FindUnavailabilityPeriod(id);
-            return View(booking);
-        }
-
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(UnavailabilityPeriod unavailabilityPeriod)

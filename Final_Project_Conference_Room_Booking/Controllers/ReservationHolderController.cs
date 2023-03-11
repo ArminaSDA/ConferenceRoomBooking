@@ -21,6 +21,7 @@ namespace Final_Project_Conference_Room_Booking.Controllers
             _reservationHolderService = reservationHolderService;
             _bookingService = bookingService;   
         }
+
         public async Task<ActionResult> Index()
         {
             var rHoldersList = await _reservationHolderService.GetAllReservationHolders();
@@ -32,7 +33,20 @@ namespace Final_Project_Conference_Room_Booking.Controllers
             ViewBag.BookingList = bookingList;
             return View();
         }
+        public async Task<IActionResult> Edit(int Id)
+        {
 
+            var reservationHolder = await _reservationHolderService.FindReservationHolder(Id);
+            if (reservationHolder == null)
+            {
+                return NotFound();
+            }
+
+            var bookings = await _bookingService.GetAllTheBookings();
+            ViewBag.BookingId = new SelectList(bookings, "Id", "Code", reservationHolder.BookingId);
+
+            return View(reservationHolder);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -42,12 +56,7 @@ namespace Final_Project_Conference_Room_Booking.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Edit(int id)
-        {
-            var reservation = await _reservationHolderService.FindReservationHolder(id);
-            return View(reservation);
-        }
+     
 
         [HttpPost]
         public async Task<ActionResult> Edit(ReservationHolder reservationHolder)

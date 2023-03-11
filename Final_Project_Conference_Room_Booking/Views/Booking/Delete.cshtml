@@ -1,4 +1,5 @@
-﻿@model Booking
+﻿@using System.Linq;
+@model Booking
 
 <div class="container shadow p-5">
     <div class="row pb-2">
@@ -37,19 +38,19 @@
                 <span asp-validation-for="EndDate" class=" alert-danger"></span>
             </div>
 
-         @*    <div class ="form-group col-md-6 mb-3">
-                <label asp-for="IsConfirmed">Is Confirmed:</label>
-                <input type="checkbox" id="IsConfirmed" name="IsConfirmed">
+            @*         <div class ="form-group col-md-6 mb-3">
+            <label asp-for="IsConfirmed">Is Confirmed:</label>
+            <input type="checkbox" id="IsConfirmed" name="IsConfirmed">
             </div>
             <div class ="form-group col-md-6 mb-3">
-                <label asp-for="IsDeleted">Is Deleted:</label>
-                <input type="checkbox" id="IsDeleted" name="IsDeleted">
+            <label asp-for="IsDeleted">Is Deleted:</label>
+            <input type="checkbox" id="IsDeleted" name="IsDeleted">
             </div>
 
             <div class="form-group col-md-6 mb-3">
-                <label asp-for="ConfirmedFromId">ConfirmedFromId</label>
-                <input type="number" class="form-control" asp-for="ConfirmedFromId">
-                <span asp-validation-for="ConfirmedFromId"></span>
+            <label asp-for="ConfirmedFromId">ConfirmedFromId</label>
+            <input type="number" class="form-control" asp-for="ConfirmedFromId">
+            <span asp-validation-for="ConfirmedFromId"></span>
             </div>*@
         </div>
 
@@ -58,12 +59,3 @@
     </form>
 
 </div>
-
-
-@*//for front end validations*@
-
-@section Scripts{
-    @{
-        <partial name="_ValidationScriptsPartial" />
-    }
-    }

@@ -1,44 +1,43 @@
-﻿@model UnavailabilityPeriod
+﻿@model Final_Project_Conference_Room_Booking.Models.UnavailabilityPeriod
 
-<div class="container shadow p-5">
-    <div class="row pb-2">
-        <h2>Edit Unavailability Period</h2>
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ConferenceRoomId" class="control-label"></label>
+                @Html.DropDownList("ConferenceRoomId", ViewBag.ConferenceRoomId as SelectList, "--Select a Conference Room--", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
     </div>
-
-    <form method="post" asp-action="Edit">
-        <div asp-validation-summary="All"></div>
-
-        <div class="form-row">
-
-            <div class="form-group col-md-6">
-                @Html.DropDownListFor(m => m.ConferenceRoomId,
-                new SelectList(Enum.GetValues(typeof(ConferenceRoom))),
-                "Select Room")
-            </div> 
-            <div class="form-group col-md-6">
-                <label asp-for="StartDate">StartDate</label>
-                <input type="datetime-local" class="form-control mb-3" asp-for="StartDate" placeholder="Please insert StartDate">
-                <span asp-validation-for="StartDate" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="EndDate">EndDate</label>
-                <input type="datetime-local" class="form-control mb-3" asp-for="EndDate" placeholder="Please insert EndDate">
-                <span asp-validation-for="EndDate" class=" alert-danger"></span>
-            </div>
- 
-        </div>
-
-        <button type="submit" class="btn btn-lg btn-primary p-2"><i class="bi bi-file-plus-fill"></i>Update</button>
-        <a asp-controller="UnavailabilityPeriod" asp-action="Index" class="btn btn-lg btn-warning p-2">Back To List</a>
-    </form>
-
 </div>
 
 
-@*//for front end validations*@
-
-@section Scripts{
+@section Scripts {
     @{
-        <partial name="_ValidationScriptsPartial" />
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     }
