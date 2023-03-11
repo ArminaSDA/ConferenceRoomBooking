@@ -80,5 +80,19 @@ namespace Final_Project_Conference_Room_Booking.Controllers
             await _bookingService.DeleteBooking(id);
             return RedirectToAction("Index");
         }
+
+        public async Task<ActionResult> Confirm(int id)
+        {
+            var booking = await _bookingService.FindBooking(id);
+            return View(booking);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ConfirmBooking(int id)
+        {
+            await _bookingService.Confirm(id);
+            return RedirectToAction("Index");
+        }
     }
 }

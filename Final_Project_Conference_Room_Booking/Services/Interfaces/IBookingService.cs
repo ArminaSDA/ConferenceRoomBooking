@@ -10,5 +10,6 @@ namespace Final_Project_Conference_Room_Booking.Services.Interfaces
         Task<Booking> FindBooking(int id);
         Task<Booking> Edit(int id);
         Task<Booking> Edit(Booking booking);
+        Task<Booking> Confirm(int id);
     }
 }

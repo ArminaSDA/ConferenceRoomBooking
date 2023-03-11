@@ -44,5 +44,10 @@ namespace Final_Project_Conference_Room_Booking.Services.Implementation
         {
             return await _bookingRepository.Edit(booking);
         }
+
+        public async Task<Booking> Confirm(int id)
+        {   
+            return await _bookingRepository.Confirm(id);
+        }
     }
 }
