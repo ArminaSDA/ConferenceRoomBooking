@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Emit;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Final_Project_Conference_Room_Booking.Models
 {
-    public partial class ConferenceRoomBookingContext : DbContext
+    public partial class ConferenceRoomBookingContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
-        public ConferenceRoomBookingContext()
-        {
-        }
-
         public ConferenceRoomBookingContext(DbContextOptions<ConferenceRoomBookingContext> options)
             : base(options)
         {
@@ -20,11 +19,10 @@ namespace Final_Project_Conference_Room_Booking.Models
         public virtual DbSet<ConferenceRoom> ConferenceRooms { get; set; } = null!;
         public virtual DbSet<ReservationHolder> ReservationHolders { get; set; } = null!;
         public virtual DbSet<UnavailabilityPeriod> UnavailabilityPeriods { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
-
       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Booking>(entity =>
             {
                 entity.Property(e => e.Code).HasMaxLength(4);
@@ -36,7 +34,7 @@ namespace Final_Project_Conference_Room_Booking.Models
                 entity.HasOne(d => d.ConfirmedFrom)
                     .WithMany(p => p.Bookings)
                     .HasForeignKey(d => d.ConfirmedFromId)
-                    .HasConstraintName("FK_Bookings_User");
+                    .HasConstraintName("FK_Bookings_ApplicationUser");
 
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.Bookings)
@@ -82,19 +80,6 @@ namespace Final_Project_Conference_Room_Booking.Models
                     .HasForeignKey(d => d.ConferenceRoomId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UnavailabilityPeriods_ConferenceRooms");
-            });
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.ToTable("User");
-
-                entity.Property(e => e.Email).HasMaxLength(50);
-
-                entity.Property(e => e.Name).HasMaxLength(50);
-
-                entity.Property(e => e.Password).HasMaxLength(30);
-
-                entity.Property(e => e.Surname).HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);

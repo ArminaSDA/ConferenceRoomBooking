@@ -4,7 +4,7 @@ namespace Final_Project_Conference_Room_Booking.Repositories.Interfaces
 {
     public interface ILoginRepository
     {
-        Task<IEnumerable<User>> getuser();
-        Task<User> AuthenticateUser(string username, string passcode);
+        Task<IEnumerable<ApplicationUser>> getuser();
+        Task<ApplicationUser> AuthenticateUser(string username, string passcode);
     }
 }

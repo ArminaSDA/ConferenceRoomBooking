@@ -20,7 +20,7 @@ namespace Final_Project_Conference_Room_Booking.Models
         public bool IsDeleted { get; set; }
         public int? ConfirmedFromId { get; set; }
 
-        public virtual User? ConfirmedFrom { get; set; }
+        public virtual ApplicationUser? ConfirmedFrom { get; set; }
         public virtual ConferenceRoom Room { get; set; } = null!;
         public virtual ICollection<ReservationHolder> ReservationHolders { get; set; }
     }
