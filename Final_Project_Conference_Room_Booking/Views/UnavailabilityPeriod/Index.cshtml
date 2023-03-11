@@ -1,4 +1,5 @@
-﻿@model IEnumerable<UnavailabilityPeriod>
+﻿@using System.Linq;
+@model IEnumerable<UnavailabilityPeriod>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,14 +13,15 @@
 <div class="container shadow p-5">
 
     <div class="col mb-3">
-        <a asp-controller="UnavailabilityPeriod" asp-action="Create" class="btn btn-lg btn-primary"><i class="bi bi-file-plus-fill"></i>Create Unavailabilty Period</a>
+        <a asp-controller="UnavailabilityPeriod" asp-action="Create" class="btn btn-lg btn-primary"><i class="bi bi-file-plus-fill"></i> Unavailability Periods : </a>
     </div>
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
+                <th scope="col">ConferenceRoomId</th>
                 <th scope="col">StardDate</th>
                 <th scope="col">EndDate</th>
-                <th scope="col">ConferenceRoomId</th>
+
             </tr>
         </thead>
         <tbody>
@@ -39,8 +41,8 @@
 
                     <td>
                         <div role="group" class="w-60 btn-group">
-                            <a asp-controller="Unavailability" asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
-                            <a asp-controller="Unavailability" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i>Delete</a>
+                            <a asp-controller="UnavailabilityPeriod" asp-action="edit" asp-route-id="@item.Id" class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+                            <a asp-controller="UnavailabilityPeriod" asp-action="delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i>Delete</a>
                         </div>
                     </td>
                 </tr>
@@ -48,11 +50,3 @@
         </tbody>
     </table>
 </div>
-
-@*<style>
-    tbody {
-        background-image: url("https://wallpaperaccess.com/full/4012592.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-</style>*@

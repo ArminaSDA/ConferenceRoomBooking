@@ -31,7 +31,20 @@ namespace Final_Project_Conference_Room_Booking.Controllers
             ViewBag.ConferenceRoomList = conferenceRoomList; // ViewBag i dergon cRooms tek View
             return View();
         }
-  
+        public async Task<IActionResult> Edit(int Id)
+        {
+
+            var booking = await _bookingService.FindBooking(Id);
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+            var bookings = await _conferenceRoomService.GetAllConferenceRooms();
+            ViewBag.RoomId = new SelectList(bookings, "Id", "Code", booking.RoomId);
+
+            return View(booking);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Booking booking)
@@ -41,12 +54,7 @@ namespace Final_Project_Conference_Room_Booking.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Edit(int id)
-        {
-            var booking = await _bookingService.FindBooking(id);
-            return View(booking);
-        }
+    
 
         [HttpPost]
         [ValidateAntiForgeryToken]

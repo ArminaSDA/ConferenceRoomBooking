@@ -1,4 +1,5 @@
-﻿@model ReservationHolder
+﻿using System.Linq;
+@model ReservationHolder
 
 <div class="container shadow p-5">
     <div class="row pb-2">
@@ -40,24 +41,20 @@
                 <input type="text" class="form-control" asp-for="Notes" placeholder="Here you can put all your Notes">
                 <span asp-validation-for="Notes" class=" alert-danger"></span>
             </div>
-         @*   <div class="form-group col-md-6 mb-3">
-                <label asp-for="BookingId">BookingId</label>
-                <input type="text" class="form-control" asp-for="BookingId">
-                <span asp-validation-for="BookingId" class=" alert-danger"></span>
-            </div>*@
+
         </div>
 
-        <button type="submit" class="btn btn-lg btn-danger p-2"><i class="bi bi-trash-fill"></i>Delete</button>
-        <a asp-controller="ReservationHolder" asp-action="Index" class="btn btn-lg btn-warning p-2">Back To List</a>
+        <button type="submit" class="btn btn-lg btn-danger p-2"><i class="bi bi-trash-fill"></i>delete</button>
+        <a asp-controller="reservationholder" asp-action="index" class="btn btn-lg btn-warning p-2">back to list</a>
     </form>
 
 </div>
 
 
-@*//for front end validations*@
+@*//for front end validations
 
-@section Scripts{
-    @{
-        <partial name="_ValidationScriptsPartial" />
-    }
-    }
+@*@*section Scripts{
+@{
+    <partial name="_ValidationScriptsPartial" />
+}
+    }*@*@*@*

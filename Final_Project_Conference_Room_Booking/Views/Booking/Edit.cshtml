@@ -1,71 +1,60 @@
-﻿@model Booking
+﻿@model Final_Project_Conference_Room_Booking.Models.Booking
 
-<div class="container shadow p-5">
-    <div class="row pb-2">
-        <h2>Edit Booking</h2>
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacity" class="control-label"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomId" class="control-label"></label>
+                <select asp-for="RoomId" class="form-control" asp-items="@ViewBag.RoomId"></select>
+                <span asp-validation-for="RoomId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            @*   <div class="form-group">
+            <label asp-for="IsConfirmed" class="control-label"></label>
+            <input asp-for="IsConfirmed" class="form-control" />
+            <span asp-validation-for="IsConfirmed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="IsDeleted" class="control-label"></label>
+            <input asp-for="IsDeleted" class="form-control" />
+            <span asp-validation-for="IsDeleted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="ConfirmedFromId" class="control-label"></label>
+            <input asp-for="ConfirmedFromId" class="form-control" />
+            <span asp-validation-for="ConfirmedFromId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-
-    <form method="post" asp-action="Edit">
-        <div asp-validation-summary="All"></div>
-
-       @* <div class="form-row">
-            @Html.DropDownListFor(m => m.RoomId,
-            new SelectList(Enum.GetValues(typeof(ConferenceRoom))),
-            "Select Room")
-            </div>*@
-            <div class="form-group col-md-6">
-                <label asp-for="RoomId">RoomId</label>
-                <input type="text" class="form-control mb-3" asp-for="RoomId" placeholder="Please insert your Room Id">
-                <span asp-validation-for="RoomId" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Code">Code</label>
-                <input type="text" class="form-control mb-3" asp-for="Code" placeholder="Please insert your Code">
-                <span asp-validation-for="Code" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Capacity">Capacity</label>
-                <input type="number" class="form-control mb-3" asp-for="Capacity" placeholder="The number requested cannot exceed the maximum capacity">
-                <span asp-validation-for="Capacity" class=" alert-danger"></span>
-            </div>
-         
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="StartDate">StartDate</label>
-                <input type="datetime-local" class="form-control" asp-for="StartDate" placeholder="Please insert the Start Date of your reservation">
-                <span asp-validation-for="StartDate" class=" alert-danger"></span>
-            </div>
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="EndDate">EndDate</label>
-                <input type="datetime-local" class="form-control" asp-for="EndDate" placeholder="Please insert the End Date of your reservation">
-                <span asp-validation-for="EndDate" class=" alert-danger"></span>
-            </div>
-           @* <div class ="form-group col-md-6 mb-3">
-                <label asp-for="IsConfirmed">Is Confirmed:</label>
-                <input type="checkbox" id="IsConfirmed" name="IsConfirmed">
-            </div>
-            <div class ="form-group col-md-6 mb-3">
-                <label asp-for="IsDeleted">Is Deleted:</label>
-                <input type="checkbox" id="IsDeleted" name="IsDeleted">
-            </div>
-
-            <div class="form-group col-md-6 mb-3">
-                <label asp-for="ConfirmedFromId">ConfirmedFromId</label>
-                <input type="number" class="form-control" asp-for="ConfirmedFromId">
-                <span asp-validation-for="ConfirmedFromId"></span>
-            </div>*@
-       
-
-        <button type="submit" class="btn btn-lg btn-primary p-2"><i class="bi bi-file-plus-fill"></i>Update</button>
-        <a asp-controller="Booking" asp-action="Index" class="btn btn-lg btn-warning p-2">Back To List</a>
-    </form>
-
 </div>
-
-
-@*//for front end validations*@
-
-@section Scripts{
-    @{
-        <partial name="_ValidationScriptsPartial" />
-    }
-    }
