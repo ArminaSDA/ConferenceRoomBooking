@@ -16,7 +16,7 @@ namespace Final_Project_Conference_Room_Booking.Controllers
         public BookingController(IBookingService bookingService, IConferenceRoomService conferenceRoomService)
         {
             _bookingService = bookingService;
-            _conferenceRoomService = conferenceRoomService; 
+            _conferenceRoomService = conferenceRoomService;
         }
 
         public async Task<ActionResult> Index()
@@ -49,21 +49,21 @@ namespace Final_Project_Conference_Room_Booking.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Booking booking)
         {
-                var result = await _bookingService.Create(booking);
+            var result = await _bookingService.Create(booking);
 
             return RedirectToAction("Index");
         }
 
-    
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Booking booking)
         {
-            
-                await _bookingService.Edit(booking);
-                return RedirectToAction("Index");
-            
+
+            await _bookingService.Edit(booking);
+            return RedirectToAction("Index");
+
         }
 
         [HttpGet]
