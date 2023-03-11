@@ -39,15 +39,20 @@
             {
             
             <tr> 
-                <td width = "20%"> @Html.DisplayFor(modelitem => item.Code)          </td>
-                <td width = "20%"> @Html.DisplayFor(modelitem => item.Capacity)      </td>
-                <td width = "20%"> @Html.DisplayFor(modelitem => item.StartDate)     </td>
-                <td width = "20%"> @Html.DisplayFor(modelitem => item.EndDate)       </td>
-                <td width = "20%"> @Html.DisplayFor(modelitem => item.IsConfirmed)   </td>
-                <td width = "20%"> @Html.DisplayFor(modelitem => item.IsDeleted)     </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.Code)            </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.Capacity)        </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.StartDate)       </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.EndDate)         </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.IsConfirmed)     </td>
+                <td width = "20%"> @Html.DisplayFor(modelitem => item.IsDeleted)       </td>
                 <td width = "20%"> @Html.DisplayFor(modelitem => item.ConfirmedFromId) </td>
                 <td width = "20%"> @Html.DisplayFor(modelitem => item.RoomId)          </td>
-
+                <td>
+                <div role="group" class="w-60 btn-group">
+                <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i>Delete</a>            
+                </div>           
+                </td>           
+                        
             </tr>
            
             

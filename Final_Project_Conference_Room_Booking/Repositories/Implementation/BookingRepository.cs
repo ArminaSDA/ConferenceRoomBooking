@@ -49,5 +49,16 @@ namespace Final_Project_Conference_Room_Booking.Repositories.Implementation
             await _context.SaveChangesAsync();
             return booking;
         }
+
+  
+        public async Task<Booking> Confirm(int id)
+        {
+
+            var confirmedrecord = await _context.Bookings.FindAsync(id);
+            confirmedrecord.IsConfirmed = true;
+            _context.Bookings.Update(confirmedrecord);
+            await _context.SaveChangesAsync();
+            return confirmedrecord;
+        }
     }
 }
