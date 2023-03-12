@@ -4,6 +4,7 @@ namespace Final_Project_Conference_Room_Booking.Repositories.Interfaces
 {
     public interface IBookingRepository
     {
+        Task<List<Booking>> GetAllTheBookings(DateTime data);
         Task<List<Booking>> GetAllTheBookings();
         Task<Booking> Create(Booking booking);
         Task<Booking> DeleteBooking(int id);

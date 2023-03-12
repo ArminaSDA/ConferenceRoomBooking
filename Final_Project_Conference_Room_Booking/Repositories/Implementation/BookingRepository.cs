@@ -14,10 +14,21 @@ namespace Final_Project_Conference_Room_Booking.Repositories.Implementation
         }
 
         public async Task<List<Booking>> GetAllTheBookings()
+
+
         {
-            var bookingList = await _context.Bookings.Where(x => x.IsDeleted == false).ToListAsync();
+            var  bookingList = await _context.Bookings.Where(s => s.IsDeleted == false).ToListAsync();
+            return bookingList;
+
+        }
+        public async Task<List<Booking>> GetAllTheBookings(DateTime data)
+        {
+            
+            var    bookingList = await _context.Bookings.Where(s => s.StartDate <= data && s.EndDate >= data).ToListAsync();
             return bookingList;
         }
+
+     
         public async Task<Booking> Create(Booking booking)
         {
             await _context.Bookings.AddAsync(booking);
