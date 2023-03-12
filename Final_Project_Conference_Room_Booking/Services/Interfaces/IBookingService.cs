@@ -4,6 +4,7 @@ namespace Final_Project_Conference_Room_Booking.Services.Interfaces
 {
     public interface IBookingService
     {
+        Task<List<Booking>> GetAllTheBookings(DateTime data);
         Task<List<Booking>> GetAllTheBookings();
         Task<Booking> Create(Booking booking);
         Task<Booking> DeleteBooking(int id);
@@ -11,5 +12,6 @@ namespace Final_Project_Conference_Room_Booking.Services.Interfaces
         Task<Booking> Edit(int id);
         Task<Booking> Edit(Booking booking);
         Task<Booking> Confirm(int id);
+        
     }
 }
